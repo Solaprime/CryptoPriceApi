@@ -43,6 +43,16 @@ namespace CryptoApplication
             services.AddHealthChecks()
                 //We want to confirm the sttus  of the extrnal Url we are calling
                 .AddCheck<CoinsPriceHealthCheck>("CoinsEndPoint");
+
+            //Versioning Flow
+            services.AddApiVersioning(opt =>
+            {
+                opt.AssumeDefaultVersionWhenUnspecified = true;
+                  opt.DefaultApiVersion = ApiVersion.Default;
+               //  opt.DefaultApiVersion = new ApiVersion(2, 1);
+                //Repoert all Api Versioning
+                opt.ReportApiVersions = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "imgm1EDucmtn3IrdmP2ZI824Y6hWfcV3sdmn2wPuGaNWf8kWAnjUQnmhExpOJrqT6UywV4Hxub+FgYfJmWKiYw==",
+  "dgSpecHash": "YarkFkbce4LsJHRBf0QtJF8y0a1h1nktNgdpfBZg9+SEmCKU5+5bHaTKnSVnvh0GM/wmtObWG9McCbIFumEgKw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Arinola\\Desktop\\CryptoApp\\CryptoApplication\\CryptoApplication.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Arinola\\.nuget\\packages\\microsoft.aspnetcore.mvc.versioning\\5.0.0\\microsoft.aspnetcore.mvc.versioning.5.0.0.nupkg.sha512",
     "C:\\Users\\Arinola\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\Arinola\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\5.0.0\\microsoft.extensions.dependencyinjection.5.0.0.nupkg.sha512",
     "C:\\Users\\Arinola\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\5.0.0\\microsoft.extensions.dependencyinjection.abstractions.5.0.0.nupkg.sha512",

@@ -7,14 +7,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CryptoApplication.Controllers
+namespace CryptoApplication.Controllers.V2
 {
-    //When i used these url which was the same as the one use in V2 i was having some funny 
-    //error it seems was ab ug from .net s ichanged the name 
-  //  [Route("api/[controller]")]
-    [Route("api/v1/[controller]")]
+    //We can also version wit Query String
+    //in the Htpp Header as well
+    [Route("api/v{version:apiVersion}/[controller]")]
+   // [Route("api/v{version:apiVersion}[controller]")]
     [ApiController]
-    [ApiVersion("1.0", Deprecated =true)]
+    [ApiVersion("2.0")]
     public class CoinPricesController : ControllerBase
     {
         private readonly ILogger<CoinPricesController> _logger;
@@ -33,4 +33,3 @@ namespace CryptoApplication.Controllers
         }
     }
 }
-//Gdp, Usd
