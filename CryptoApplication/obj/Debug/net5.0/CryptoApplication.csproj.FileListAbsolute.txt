@@ -30,3 +30,4 @@ C:\Users\Arinola\Desktop\CryptoApp\CryptoApplication\obj\Debug\net5.0\CryptoAppl
 C:\Users\Arinola\Desktop\CryptoApp\CryptoApplication\obj\Debug\net5.0\ref\CryptoApplication.dll
 C:\Users\Arinola\Desktop\CryptoApp\CryptoApplication\obj\Debug\net5.0\CryptoApplication.pdb
 C:\Users\Arinola\Desktop\CryptoApp\CryptoApplication\obj\Debug\net5.0\CryptoApplication.genruntimeconfig.cache
+C:\Users\Arinola\Desktop\CryptoApp\CryptoApplication\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.Versioning.dll

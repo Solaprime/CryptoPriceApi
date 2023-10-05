@@ -1,3 +1,4 @@
+using CryptoApplication.ApplicationHelathCheck;
 using CryptoApplication.Configuration;
 using CryptoApplication.Services;
 using Microsoft.AspNetCore.Builder;
@@ -28,6 +29,8 @@ namespace CryptoApplication
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //var ourKeyconfig = Configuration.GetSection("ApplicationKey").Get<ApplicationKey>();
+            //_apiKey = ourKeyconfig.worldcoinindexApiKey;
             services.Configure<ServiceSettings>(Configuration.GetSection(nameof(ServiceSettings)));
             services.AddScoped<IApiClient, ApiClient>();
 
@@ -35,6 +38,20 @@ namespace CryptoApplication
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CryptoApplication", Version = "v1" });
+            });
+            //for healthCheck
+            services.AddHealthChecks()
+                //We want to confirm the sttus  of the extrnal Url we are calling
+                .AddCheck<CoinsPriceHealthCheck>("CoinsEndPoint");
+
+            //Versioning Flow
+            services.AddApiVersioning(opt =>
+            {
+                opt.AssumeDefaultVersionWhenUnspecified = true;
+                  opt.DefaultApiVersion = ApiVersion.Default;
+               //  opt.DefaultApiVersion = new ApiVersion(2, 1);
+                //Repoert all Api Versioning
+                opt.ReportApiVersions = true;
             });
         }
 
@@ -57,6 +74,8 @@ namespace CryptoApplication
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+
+                endpoints.MapHealthChecks("/health");
             });
         }
     }

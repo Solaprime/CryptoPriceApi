@@ -1,4 +1,5 @@
 ﻿using CryptoApplication.Configuration;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Polly;
@@ -16,6 +17,7 @@ namespace CryptoApplication.Services
     {
         private readonly ServiceSettings _settings;
         private readonly ILogger<ApiClient> _logger;
+        private readonly IConfiguration _config;
 
         private static readonly List<HttpStatusCode> invalidStatusCodes = new List<HttpStatusCode>
         {
@@ -28,13 +30,15 @@ namespace CryptoApplication.Services
              HttpStatusCode.InternalServerError
         }; 
 
-        public ApiClient(IOptions<ServiceSettings> settings, ILogger<ApiClient> logger)
+        public ApiClient(IOptions<ServiceSettings> settings, ILogger<ApiClient> logger, IConfiguration config)
         {
             _logger = logger;
             _settings = settings.Value;
+            _config = config;
         }
         public CoinsInfo GetCryptoCurrencyPrice(string currency)
         {
+            string secret = _config["worldcoinindexApiKey"];
             var retryPolicy = Policy.HandleResult<IRestResponse>(resp => invalidStatusCodes.Contains(resp.StatusCode))
                 .WaitAndRetry(10, i =>TimeSpan.FromSeconds(Math.Pow(2, 1)),
                  (result, TimeSpan, currentRetryRecount, context) =>
@@ -47,7 +51,7 @@ namespace CryptoApplication.Services
             var client = new RestClient($"{_settings.CoinsPriceUrl}/ticker");
             var request = new RestRequest(Method.GET);
 
-           request.AddParameter("Key", _settings.ApiKey, ParameterType.GetOrPost);
+            request.AddParameter("Key", secret, ParameterType.GetOrPost);
             request.AddParameter("label", "ethbtc-ltcbtc-btcbtc", ParameterType.GetOrPost);
             request.AddParameter("fiat", currency, ParameterType.GetOrPost);
            //Wrap it in the retryPolicy 
